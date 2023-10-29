@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions name="theses"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="https://kopr.ics.upjs.sk"
+             xmlns:kopr="https://kopr.ics.upjs.sk"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                targetNamespace="https://kopr.ics.upjs.sk">
+            <include schemaLocation="theses.xsd" />
+        </schema>
+    </types>
+
+    <message name="searchRequest">
+        <part name="part" element="kopr:search" />
+    </message>
+
+    <message name="searchResponse">
+        <part name="part" element="kopr:theses" />
+    </message>
+
+    <portType name="ThesesPortType">
+        <operation name="search">
+            <input message="kopr:searchRequest" />
+            <output message="kopr:searchResponse" />
+        </operation>
+    </portType>
+    <binding name="ThesesBinding" type="kopr:ThesesPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="search">
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+    </binding>
+    <service name="ThesesService">
+        <port name="ThesesPort" binding="kopr:ThesesBinding">
+            <soap:address location="http://localhost:8080/theses" />
+        </port>
+    </service>
+</definitions>

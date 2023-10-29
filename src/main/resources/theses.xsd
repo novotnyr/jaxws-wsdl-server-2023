@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="https://kopr.ics.upjs.sk"
+        elementFormDefault="qualified">
+
+    <element name="search">
+        <complexType>
+            <sequence>
+                <element name="author" type="string" minOccurs="0"/>
+                <element name="keyword" type="string" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="theses">
+        <complexType>
+            <sequence>
+                <element name="thesis" minOccurs="0" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element name="author"/>
+                            <element name="title"/>
+                            <element name="year" type="int"/>
+                        </sequence>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+</schema>
